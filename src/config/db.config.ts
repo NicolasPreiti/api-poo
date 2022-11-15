@@ -1,9 +1,11 @@
-import dotenv from "dotenv"
-import { DataSourceOptions } from "typeorm"
+import dotenv from 'dotenv'
+import { DataSourceOptions } from 'typeorm'
+import { RoleModel } from '../models/role.model'
+import { UserModel } from '../models/user.model'
 
 dotenv.config()
 enum DbType {
-  mysql = "mysql"
+  mysql = 'mysql'
 }
 
 const develop: DataSourceOptions = {
@@ -15,9 +17,9 @@ const develop: DataSourceOptions = {
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [UserModel, RoleModel],
   subscribers: [],
-  migrations: [],
+  migrations: []
 }
 
 const production: DataSourceOptions = {
@@ -31,7 +33,7 @@ const production: DataSourceOptions = {
   logging: false,
   entities: [],
   subscribers: [],
-  migrations: [],
+  migrations: []
 }
 
 export const dbConfig = {
