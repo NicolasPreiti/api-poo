@@ -1,17 +1,22 @@
-import { Router } from "express";
+import { Router } from 'express'
+import { DataSource } from 'typeorm'
+import { AuthRouter } from './auth.router'
+import { UserRouter } from './user.router'
 
 export class RootRouter {
-  private _router: Router
+  private readonly _router: Router
 
-  constructor() {
+  constructor (private readonly AppDataSource: DataSource) {
     this._router = Router()
     this.routes()
   }
 
-  public get router(): Router {
+  public get router (): Router {
     return this._router
   }
 
-  private routes(): void {
+  private routes (): void {
+    this._router.use('/auth', new AuthRouter(this.AppDataSource).router)
+    this._router.use('/users', new UserRouter(this.AppDataSource).router)
   }
 }
