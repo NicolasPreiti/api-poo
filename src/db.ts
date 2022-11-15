@@ -1,20 +1,22 @@
-import { DataSource, DataSourceOptions } from "typeorm"
-import { dbConfig } from "./config"
+import { DataSource, DataSourceOptions } from 'typeorm'
+import { dbConfig } from './config'
 
 export class ApplicationDatabase {
-  private _AppDataSource: DataSource
-  private _config: DataSourceOptions
+  private readonly _AppDataSource: DataSource
+  private readonly _config: DataSourceOptions
 
-  constructor() {
+  constructor () {
     this._config = dbConfig.develop
     this._AppDataSource = new DataSource(this._config)
   }
 
-  public async start(): Promise<DataSource> {
-    return this._AppDataSource.initialize()
-      .then((dataSource) => {
-        console.log("DATABASE CONNECTED")
-        return dataSource
-      })
+  public get AppDataSource (): DataSource {
+    return this._AppDataSource
+  }
+
+  public async start (): Promise<DataSource> {
+    const connection = await this._AppDataSource.initialize()
+    console.log('DATABASE CONNECTED')
+    return connection
   }
 }
