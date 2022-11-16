@@ -10,6 +10,7 @@ export class ProductRepository {
   ) {
     this.select = {
       select: {
+        uuid: true,
         name: true,
         description: true,
         price: true,
