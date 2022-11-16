@@ -14,7 +14,7 @@ export class UserService {
 
   public update = async (uuid: string, dto: UpdateUserDTO): Promise<UserModel> => {
     const { password } = dto
-    if (password) dto.password = await this.bcrypt.hash(password)
+    if (password !== undefined) dto.password = await this.bcrypt.hash(password)
 
     const user = await this.repository.update(uuid, dto)
     return user
