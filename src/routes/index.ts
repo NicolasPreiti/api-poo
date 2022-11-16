@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { DataSource } from 'typeorm'
 import { AuthRouter } from './auth.router'
+import { ProductRouter } from './product.router'
 import { UserRouter } from './user.router'
 
 export class RootRouter {
@@ -18,5 +19,6 @@ export class RootRouter {
   private routes (): void {
     this._router.use('/auth', new AuthRouter(this.AppDataSource).router)
     this._router.use('/users', new UserRouter(this.AppDataSource).router)
+    this._router.use('/products', new ProductRouter(this.AppDataSource).router)
   }
 }
