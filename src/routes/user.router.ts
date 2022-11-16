@@ -41,7 +41,7 @@ export class UserRouter {
   public routes = (): void => {
     this._router.patch(
       '/',
-      this._authenticator.auth as any,
+      this._authenticator.validate as any,
       this._validator.start(new UpdateUserDTO()) as any,
       this._middleware.emailInUse as any,
       this._controller.update as any
@@ -49,7 +49,7 @@ export class UserRouter {
 
     this._router.delete(
       '/',
-      this._authenticator.auth as any,
+      this._authenticator.validate as any,
       this._controller.delete as any
     )
   }

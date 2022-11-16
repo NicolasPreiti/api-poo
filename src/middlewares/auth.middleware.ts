@@ -13,18 +13,18 @@ export class Authentication {
     this.jwt = new JWT()
   }
 
-  public auth = (req: TokenRequest, res: Response, next: NextFunction): undefined | Response => {
+  public validate = (req: TokenRequest, res: Response, next: NextFunction): undefined | Response => {
     try {
       const { authorization } = req.headers
       const token = authorization?.split(' ')[1]
 
-      if (token === undefined) throw new CustomError(400, 'please send a token')
+      if (token === undefined) throw new CustomError(401, 'please send a token')
       const payload = this.jwt.verify(token)
 
       req.token = payload
       next()
     } catch (err: any) {
-      return this.response.failed(res, err.statusCode, err.message)
+      return this.response.failed(res, 401, err.message)
     }
   }
 }
