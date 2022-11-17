@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { OrderProductModel } from './order-product.model'
 
 @Entity('product')
 export class ProductModel {
@@ -16,6 +17,9 @@ export class ProductModel {
 
   @Column({ type: 'int', nullable: false })
   public stock!: number
+
+  @OneToMany(() => OrderProductModel, (op) => op.product)
+  public orderProducts?: OrderProductModel[]
 
   @CreateDateColumn({ name: 'created_at' })
   public createdAt?: Date
