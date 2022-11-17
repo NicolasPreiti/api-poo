@@ -1,5 +1,7 @@
 import dotenv from 'dotenv'
 import { DataSourceOptions } from 'typeorm'
+import { OrderProductModel } from '../models/order-product.model'
+import { OrderModel } from '../models/order.model'
 import { ProductModel } from '../models/product.model'
 import { RoleModel } from '../models/role.model'
 import { UserModel } from '../models/user.model'
@@ -18,7 +20,7 @@ const develop: DataSourceOptions = {
   database: process.env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [UserModel, RoleModel, ProductModel],
+  entities: [UserModel, RoleModel, ProductModel, OrderModel, OrderProductModel],
   subscribers: [],
   migrations: []
 }
