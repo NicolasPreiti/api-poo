@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import { OrderModel } from './order.model'
 import { RoleModel } from './role.model'
 
 @Entity('user')
@@ -14,6 +15,9 @@ export class UserModel {
 
   @ManyToOne(() => RoleModel, (role) => role.users)
   public role!: RoleModel
+
+  @OneToMany(() => OrderModel, (order) => order.user)
+  public orders?: OrderModel[]
 
   @CreateDateColumn({ name: 'created_at' })
   public createdAt?: Date
