@@ -48,7 +48,7 @@ export class ProductRepository {
       ...this.select
     })
 
-    if (product === null) throw new CustomError(404, 'product not found')
+    if (product === null) throw new CustomError(404, `product ${uuid} not found`)
     return product
   }
 
