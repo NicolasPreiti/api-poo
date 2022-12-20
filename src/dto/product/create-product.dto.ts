@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator'
+import { IsNotEmpty, IsNumberString, IsString } from 'class-validator'
 
 export class CreateProductDTO {
   @IsNotEmpty()
@@ -10,11 +10,11 @@ export class CreateProductDTO {
   public description!: string
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   public price!: number
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsNumberString()
   public stock!: number
 
   public new? = (body: this): this => {
