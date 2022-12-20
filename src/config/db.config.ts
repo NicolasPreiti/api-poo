@@ -34,7 +34,7 @@ const production: DataSourceOptions = {
   database: process.env.P_DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [UserModel, RoleModel, ProductModel, OrderModel, OrderProductModel],
   subscribers: [],
   migrations: []
 }

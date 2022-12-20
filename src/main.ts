@@ -1,3 +1,4 @@
+import cors from 'cors'
 import dotenv from 'dotenv'
 import express, { Router } from 'express'
 import { Server } from 'http'
@@ -31,6 +32,7 @@ export class ApplicationServer {
   }
 
   private middlewares (): void {
+    this._app.use(cors())
     this._app.use(express.json())
     this._app.use(express.urlencoded())
   }

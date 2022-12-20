@@ -6,7 +6,7 @@ export class ApplicationDatabase {
   private readonly _config: DataSourceOptions
 
   constructor () {
-    this._config = dbConfig.develop
+    this._config = dbConfig.production
     this._AppDataSource = new DataSource(this._config)
   }
 
