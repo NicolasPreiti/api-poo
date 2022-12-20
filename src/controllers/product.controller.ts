@@ -1,16 +1,19 @@
 import { Request, Response } from 'express'
 import { HttpResponse } from '../helpers/http-response.helper'
+import { AwsS3Client } from '../libs/aws-s3'
 import { ProductService } from '../services/product.service'
 
 export class ProductController {
   constructor (
     private readonly response: HttpResponse,
-    private readonly service: ProductService
+    private readonly service: ProductService,
+    private readonly S3Client: AwsS3Client
   ) {}
 
   public create = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const product = await this.service.create(req.body)
+      const file = req.file
+      const product = await this.service.create(req.body, file as Express.Multer.File)
 
       return this.response.ok(res, 201, product, 'product created')
     } catch (err: any) {
