@@ -64,7 +64,7 @@ export class ProductRouter {
       this._admin.validate as any,
       this._upload.single('image'),
       this._sharp.resize(),
-      // this._validator.start(new CreateProductDTO()) as any,
+      this._validator.start(new CreateProductDTO()) as any,
       this._controller.create as any
     )
 
