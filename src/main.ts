@@ -32,9 +32,7 @@ export class ApplicationServer {
   }
 
   private middlewares (): void {
-    this._app.use(cors({
-      origin: '*'
-    }))
+    this._app.use(cors())
     this._app.use(express.json())
     this._app.use(express.urlencoded())
   }
