@@ -11,6 +11,7 @@ export class ProductRepository {
     this.select = {
       select: {
         uuid: true,
+        image: true,
         name: true,
         description: true,
         price: true,
@@ -20,10 +21,11 @@ export class ProductRepository {
   }
 
   public create = async (model: ProductModel): Promise<ProductModel> => {
-    const { uuid, name, description, price, stock } = model
+    const { uuid, image, name, description, price, stock } = model
 
     const product = this.repository.create()
     product.uuid = uuid
+    product.image = image
     product.name = name
     product.description = description
     product.price = price
@@ -53,9 +55,10 @@ export class ProductRepository {
   }
 
   public update = async (uuid: string, model: Partial<ProductModel>): Promise<ProductModel> => {
-    const { name, description, price, stock } = model
+    const { image, name, description, price, stock } = model
     const product = await this.findOne(uuid)
 
+    product.image = image
     product.name = name as string
     product.description = description as string
     product.price = price as number
