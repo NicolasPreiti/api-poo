@@ -6,6 +6,9 @@ export class ProductModel {
   @PrimaryColumn({ type: 'varchar', unique: true, nullable: false })
   public uuid!: string
 
+  @Column({ type: 'varchar', nullable: true })
+  public image?: string
+
   @Column({ type: 'varchar', nullable: false })
   public name!: string
 
