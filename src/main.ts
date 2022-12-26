@@ -36,6 +36,9 @@ export class ApplicationServer {
   }
 
   private routes (): void {
+    this._app.get('/', (req, res) => {
+      res.send('hi')
+    })
     this._app.use('/', this._router)
   }
 
