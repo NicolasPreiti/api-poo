@@ -15,7 +15,8 @@ export class ApplicationServer {
 
   constructor () {
     this._app = express()
-    this._port = Number(process.env.$PORT) | 3000
+    this._port = Number(process.env.PORT) ?? 3000
+    console.log(this._port)
 
     new ApplicationDatabase().start()
       .then((dataSource) => {
