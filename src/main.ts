@@ -1,3 +1,4 @@
+import cors from 'cors'
 import dotenv from 'dotenv'
 import express, { Router } from 'express'
 import { Server } from 'http'
@@ -16,7 +17,6 @@ export class ApplicationServer {
   constructor () {
     this._app = express()
     this._port = Number(process.env.PORT) ?? 3000
-    console.log(this._port)
 
     new ApplicationDatabase().start()
       .then((dataSource) => {
@@ -32,6 +32,7 @@ export class ApplicationServer {
   }
 
   private middlewares (): void {
+    this._app.use(cors())
     this._app.use(express.json())
     this._app.use(express.urlencoded())
   }
